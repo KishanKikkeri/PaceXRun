@@ -75,7 +75,7 @@ export default function Gallery({ gallery }) {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 640px) {
           #gallery .container > div:last-child {
             grid-template-columns: 1fr 1fr !important;
@@ -84,7 +84,7 @@ export default function Gallery({ gallery }) {
             grid-column: span 2 !important;
           }
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }

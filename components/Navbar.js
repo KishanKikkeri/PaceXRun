@@ -61,11 +61,11 @@ export default function Navbar({ nav }) {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 640px) {
           .nav-links { display: none !important; }
         }
-      `}</style>
+      ` }} />
     </nav>
   )
 }

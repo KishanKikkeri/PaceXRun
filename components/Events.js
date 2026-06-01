@@ -85,11 +85,11 @@ export default function Events({ events }) {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 768px) {
           #events .container > div { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }

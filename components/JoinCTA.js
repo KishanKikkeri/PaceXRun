@@ -64,11 +64,11 @@ export default function JoinCTA({ nav }) {
         </div>
       </div>
 
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 768px) {
           #join .container > div { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
-      `}</style>
+      ` }} />
     </section>
   )
 }
