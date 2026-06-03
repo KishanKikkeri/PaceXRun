@@ -5,7 +5,7 @@ export default function Events({ events }) {
       location: 'Ecoworld, Bellandur',
       distance: '3K / 5K',
       day_and_time: 'Every Saturday, 6:00 AM',
-      description: { json: null },
+      url: '/ecoworld-saturday-morning-run',
       registration_link: { href: '#', title: 'Register Now' },
     },
     {
@@ -13,7 +13,7 @@ export default function Events({ events }) {
       location: 'Cubbon Park, Kasturba Rd',
       distance: '3K / 5K',
       day_and_time: 'Every Sunday, 6:30 AM',
-      description: { json: null },
+      url: '/cubbon-park-sunday-morning-run',
       registration_link: { href: '#', title: 'Join This Run' },
     },
   ]
@@ -35,30 +35,23 @@ export default function Events({ events }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {items.map((ev, i) => (
               <div key={i} style={{
-                background: 'var(--card)',
-                border: '1px solid var(--border)',
-                padding: '32px',
-                borderRadius: 2,
-                transition: 'border-color 0.2s',
-                cursor: 'default',
+                background: 'var(--card)', border: '1px solid var(--border)',
+                padding: '32px', borderRadius: 2, transition: 'border-color 0.2s',
               }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--green)'}
                 onMouseLeave={e => e.currentTarget.style.borderColor = 'var(--border)'}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
                   <div>
-                    <div style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: 28, letterSpacing: '0.03em',
-                      marginBottom: 6,
-                    }}>{ev.title}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, letterSpacing: '0.03em', marginBottom: 6 }}>
+                      {ev.title}
+                    </div>
                     <div style={{ fontSize: 13, color: 'var(--green)', letterSpacing: '0.05em' }}>
-                      {ev.day_and_time || ev.day_and_time}
+                      {ev.day_and_time}
                     </div>
                   </div>
                   <div style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 20, color: 'var(--muted)',
+                    fontFamily: 'var(--font-display)', fontSize: 20, color: 'var(--muted)',
                     border: '1px solid var(--border)', padding: '4px 12px', borderRadius: 2,
                   }}>{ev.distance}</div>
                 </div>
@@ -74,22 +67,28 @@ export default function Events({ events }) {
                   </div>
                 </div>
 
-                <a href={ev.registration_link?.href || '#'}
-                  className="btn btn-primary"
-                  style={{ fontSize: 13 }}>
-                  {ev.registration_link?.title || 'Register Now'} →
-                </a>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <a href={`/events/${ev.url?.replace('/', '') || ev.uid}`}
+                    className="btn btn-outline" style={{ fontSize: 13 }}>
+                    View Details
+                  </a>
+                  <a href={ev.registration_link?.href || '#'}
+                    target="_blank" rel="noreferrer"
+                    className="btn btn-primary" style={{ fontSize: 13 }}>
+                    {ev.registration_link?.title || 'Register Now'} →
+                  </a>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style>{`
         @media (max-width: 768px) {
           #events .container > div { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
-      ` }} />
+      `}</style>
     </section>
   )
 }
